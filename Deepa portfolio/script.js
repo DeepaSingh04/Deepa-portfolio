@@ -12,15 +12,22 @@ menuIcon.onclick = () => {
 // *=============================== resume opening in a new tab ==================================
 
 
-let resume1 = document.getElementById("resume-button-1").addEventListener("click", NewTab)
-let resume2 = document.getElementById("resume-button-2").addEventListener("click", NewTab)
+// *=============================== resume downloading directly ==================================
 
-function NewTab() {
-    window.open(
-        "https://drive.google.com/file/d/10pdUpAltSPCjEADvnd4HupEFcMFFvOqc/view?usp=sharing",
-        "_blank"
-    );
+let resume1 = document.getElementById("resume-button-1").addEventListener("click", DownloadResume);
+let resume2 = document.getElementById("resume-button-2").addEventListener("click", DownloadResume);
+
+function DownloadResume(event) {
+    event.preventDefault(); // Prevent default anchor action (if any)
+    const resumeUrl = "https://drive.google.com/uc?export=download&id=10pdUpAltSPCjEADvnd4HupEFcMFFvOqc"; // Use the direct download URL
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = "Deepa.pdf"; // Set the default name for the downloaded file
+    document.body.appendChild(link); // Append the link to the DOM
+    link.click(); // Trigger the download
+    document.body.removeChild(link); // Remove the link after triggering download
 }
+
 
 // *=============================== scroll sections active link ==================================
 let sections = document.querySelectorAll('section');
